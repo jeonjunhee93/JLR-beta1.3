@@ -90,15 +90,17 @@ export default function LifeRPG() {
     <div style={{ maxWidth: 600, margin: '2rem auto', padding: '1rem', background: '#fff', borderRadius: '8px' }}>
       <h1>LR</h1>
       <p>레벨: {player.level} | XP: {player.xp} | 골드: {player.gold}</p>
+
       <div>
         <input
           value={taskInput}
           onChange={e => setTaskInput(e.target.value)}
           placeholder="할 일 입력"
         />
-        <button onClick={handleAddTask}>추가</button>
+        <button onClick={handleAddTask} style={{ marginLeft: 8 }}>추가</button>
       </div>
-      <ul>
+
+      <ul style={{ marginTop: '1rem' }}>
         {tasks.map(t => (
           <li key={t.id} style={{ margin: '0.5rem 0' }}>
             {t.description}
@@ -112,6 +114,7 @@ export default function LifeRPG() {
           </li>
         ))}
       </ul>
+
       <h2>🎒 인벤토리</h2>
       <ul>
         {player.inventory.map((it, i) => (
@@ -121,7 +124,8 @@ export default function LifeRPG() {
             <button onClick={() => handleSell(it)} style={{ marginLeft: 8 }}>판매</button>
           </li>
         ))}
-      </div>
+      </ul>
+
       <h2>🧍 장비창</h2>
       <div style={{ position: 'relative', width: 300, height: 500, margin: '1rem auto' }}>
         <img
@@ -139,7 +143,7 @@ export default function LifeRPG() {
               border: '1px solid #aaa',
               borderRadius: 6,
               textAlign: 'center',
-              width: 50,
+              width: 60,
               ...slotPos[part]
             }}
           >
@@ -147,11 +151,16 @@ export default function LifeRPG() {
           </div>
         ))}
       </div>
+
       <h2>☕ 휴식</h2>
-      <button onClick={() => handleRest('유튜브 시청')} style={{ marginRight: 8 }}>
-        유튜브 30분 (30G)
-      </button>
-      <button onClick={() => handleRest('게임 플레이')}>게임 30분 (30G)</button>
+      <div>
+        <button onClick={() => handleRest('유튜브 시청')} style={{ marginRight: 8 }}>
+          유튜브 30분 (30G)
+        </button>
+        <button onClick={() => handleRest('게임 플레이')}>
+          게임 30분 (30G)
+        </button>
+      </div>
     </div>
   );
 }
