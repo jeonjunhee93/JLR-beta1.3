@@ -1,3 +1,118 @@
+# LR (Life Role-Playing Game) 완전판 프로젝트 구조 및 전체 코드
+
+```
+life-rpg-complete/
+├── index.html
+├── vite.config.js
+├── package.json
+└── src/
+    ├── index.css
+    ├── main.jsx
+    ├── assets/
+    │   └── silhouette.png
+    └── LifeRPG.jsx
+```
+
+---
+
+## 1. `index.html`
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>LR - Life Role‑Playing Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
+```
+
+---
+
+## 2. `vite.config.js`
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  base: './'
+})
+```
+
+---
+
+## 3. `package.json`
+```json
+{
+  "name": "life-rpg-complete",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^5.0.0"
+  }
+}
+```
+
+---
+
+## 4. `src/index.css`
+```css
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+}
+
+input, button {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+button {
+  cursor: pointer;
+}
+```
+
+---
+
+## 5. `src/main.jsx`
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import LifeRPG from './LifeRPG';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <LifeRPG />
+  </React.StrictMode>
+);
+```
+
+---
+
+## 6. `src/assets/silhouette.png`
+- 사람 실루엣 배경 이미지입니다. 파일명을 정확히 `silhouette.png`로 유지하세요.
+
+---
+
+## 7. `src/LifeRPG.jsx`
+```jsx
 import React, { useState } from 'react';
 import silhouette from './assets/silhouette.png';
 import './index.css';
@@ -12,16 +127,8 @@ export default function LifeRPG() {
     inventory: [],
     stats: { strength: 5, intelligence: 5, luck: 5 },
     equipment: {
-      투구: null,
-      갑옷: null,
-      무기: null,
-      방패: null,
-      장갑: null,
-      부츠: null,
-      반지: null,
-      망토: null,
-      벨트: null,
-      장신구: null
+      투구: null, 갑옷: null, 무기: null, 방패: null, 장갑: null,
+      부츠: null, 반지: null, 망토: null, 벨트: null, 장신구: null
     }
   });
 
@@ -123,7 +230,6 @@ export default function LifeRPG() {
   );
 }
 
-// 슬롯 위치 재조정
 const slotPos = {
   투구: { top: '2%', left: '50%', transform: 'translateX(-50%)' },
   갑옷: { top: '22%', left: '50%', transform: 'translateX(-50%)' },
